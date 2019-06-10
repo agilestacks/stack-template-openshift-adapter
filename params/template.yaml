@@ -1,0 +1,41 @@
+parameters:
+- name: component.ingress
+  parameters:
+  - name: urlPrefix
+    value: app
+  - name: ssoUrlPrefix
+    value: apps
+
+- name: component.dex
+  parameters:
+  - name: namespace
+    value: dex
+  - name: okta.issuer
+    fromEnv: DEX_OKTA_APP_ISSUER
+  - name: okta.clientId
+    fromEnv: DEX_OKTA_APP_CLIENT_ID
+  - name: okta.clientSecret
+    fromEnv: DEX_OKTA_APP_CLIENT_SECRET
+
+- name: component.acm
+  parameters:
+  - name: additionalNames
+    value: >
+      app.${dns.domain}
+      *.app.${dns.domain}
+      apps.${dns.domain}
+      *.apps.${dns.domain}
+      auth.${dns.domain}
+      git.${dns.domain}
+      *.svc.${dns.domain}
+
+- name: component.cert-manager
+  parameters:
+  - name: default-issuer
+    value: letsencrypt-prod
+
+- name: component.namespace
+  component: automation-tasks-namespace
+  parameters:
+  - name: name
+    value: automation-tasks

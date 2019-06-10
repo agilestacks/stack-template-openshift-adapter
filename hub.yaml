@@ -1,0 +1,65 @@
+---
+version: 1
+kind: stack
+meta:
+  name: k8s-openshift-adapter:1
+  brief: OpenShift Kubernetes import adapter stack
+
+components:
+- name: k8s-openshift
+  source:
+    dir: components/k8s-openshift
+- name: tiller
+  source:
+    dir: components/tiller
+- name: acm
+  source:
+    dir: components/acm
+- name: cert-manager
+  source:
+    dir: components/cert-manager
+- name: traefik
+  source:
+    dir: components/traefik
+- name: dex
+  source:
+    dir: components/dex
+- name: kube-dashboard
+  source:
+    dir: components/kube-dashboard
+- name: automation-tasks-namespace
+  source:
+    dir: components/namespace
+
+requires:
+- aws
+
+
+lifecycle:
+  verbs: [deploy, undeploy]
+  order:
+  - k8s-openshift
+  - tiller
+  - acm
+  - cert-manager
+  - traefik
+  - dex
+  - kube-dashboard
+  - automation-tasks-namespace
+  requires:
+    optional:
+    - component.acm.enabled:acm
+    - component.cert-manager.enabled:cert-manager
+    - component.kubernetes-dashboard.enabled:kube-dashboard
+
+outputs:
+- name: k8s-openshift:dns.domain
+- name: k8s-openshift:kubernetes.flavor
+- name: k8s-openshift:kubernetes.api.endpoint
+- name: k8s-openshift:kubernetes.api.token
+- name: k8s-openshift:cloud.region
+- name: k8s-openshift:cloud.availabilityZone
+- name: k8s-openshift:cloud.vpc.id
+- name: k8s-openshift:cloud.vpc.cidr
+- name: k8s-openshift:cloud.vpc.worker.subnet.id
+- name: k8s-openshift:cloud.vpc.worker.sg.id

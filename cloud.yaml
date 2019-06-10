@@ -1,0 +1,15 @@
+parameters:
+- name: cloud.kind
+  value: aws
+- name: dns.domain
+  kind: user
+  fromEnv: DOMAIN_NAME
+- name: terraform.bucket
+  kind: user
+  parameters:
+  - name: name
+    default: terraform.agilestacks.com
+    fromEnv: STATE_BUCKET
+  - name: region
+    default: us-east-1
+    fromEnv: STATE_REGION

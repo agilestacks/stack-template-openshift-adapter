@@ -1,0 +1,9 @@
+parameters:
+- name: kubernetes.flavor
+  value: openshift
+- name: kubernetes.api
+  parameters:
+  - name: endpoint
+    fromEnv: OPENSHIFT_API_ENDPOINT
+  - name: token
+    fromEnv: OPENSHIFT_TOKEN
