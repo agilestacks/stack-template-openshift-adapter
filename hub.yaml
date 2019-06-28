@@ -64,3 +64,12 @@ outputs:
 - name: k8s-openshift:cloud.vpc.cidr
 - name: k8s-openshift:cloud.vpc.worker.subnet.id
 - name: k8s-openshift:cloud.vpc.worker.sg.id
+- name: acm:component.tls.kind
+- name: acm:component.acm.certificateArn
+- name: cert-manager:component.tls.kind
+- name: traefik:component.ingress.protocol
+- name: traefik:component.ingress.fqdn
+- name: traefik:component.ingress.ssoFqdn
+- name: traefik:component.ingress.urlPrefix
+- name: traefik:component.ingress.ssoUrlPrefix
+- name: kube-dashboard:component.kubernetes-dashboard.url
