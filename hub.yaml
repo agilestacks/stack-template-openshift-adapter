@@ -9,6 +9,9 @@ components:
 - name: k8s-openshift
   source:
     dir: components/k8s-openshift
+- name: stackinfo
+  source:
+    dir: components/stackinfo    
 - name: tiller
   source:
     dir: components/tiller
@@ -39,6 +42,7 @@ lifecycle:
   verbs: [deploy, undeploy]
   order:
   - k8s-openshift
+  - stackinfo
   - tiller
   - acm
   - cert-manager
