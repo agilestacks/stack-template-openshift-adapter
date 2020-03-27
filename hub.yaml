@@ -49,15 +49,6 @@ lifecycle:
   - dex
   - kube-dashboard
   - automation-tasks-namespace
-  optional:
-  - acm
-  - cert-manager
-  - kube-dashboard
-  requires:
-    optional:
-    - component.acm.enabled:acm
-    - component.cert-manager.enabled:cert-manager
-    - component.kubernetes-dashboard.enabled:kube-dashboard
 
 outputs:
 - name: cloud.kind
